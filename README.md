@@ -1,1 +1,1 @@
-# options_time_decay
+# Time Decay (Theta) option strategies
