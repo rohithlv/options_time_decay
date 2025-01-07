@@ -1,0 +1,8 @@
+Project tasks:
+1) Write data loader
+
+
+Techincal tasks:
+1) Setup isort
+2) Setup auto update of requirements.txt
+3) Setup instructions for venv environment creation
