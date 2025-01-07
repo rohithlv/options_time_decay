@@ -1,4 +1,62 @@
 repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-case-conflict
+        stages:
+          - commit
+          - merge-commit
+          - push
+      - id: debug-statements
+        stages:
+          - commit
+          - merge-commit
+          - push
+      - id: end-of-file-fixer
+        stages:
+          - commit
+          - merge-commit
+          - push
+      - id: no-commit-to-branch
+        args: [--branch, main]
+        stages:
+          - commit
+          - merge-commit
+      - id: trailing-whitespace
+        stages:
+          - commit
+          - merge-commit
+          - push
+  - repo: local
+    hooks:
+      - id: black-jupyter
+        name: Black Formatter
+        description: "Runs Black on Jupyter notebooks"
+        entry: black
+        language: python
+        require_serial: true
+        stages:
+          - commit
+          - merge-commit
+          - push
+        types_or:
+          - jupyter
+          - python
+          - pyi
+      - id: isort
+        name: isort
+        description: "Runs isort on python files"
+        entry: isort
+        language: python
+        require_serial: true
+        stages:
+          - commit
+          - merge-commit
+          - push
+        types_or:
+          - python
+          - pyi
+
   - repo: https://github.com/psf/black
     rev: 23.7.0
     hooks:
@@ -8,3 +66,13 @@ repos:
     rev: 7.1.0
     hooks:
       - id: flake8
+
+default_install_hook_types:
+  - pre-commit
+  - post-checkout
+  - pre-push
+  - post-commit
+  - commit-msg
+default_language_version:
+  python: python3.10
+fail_fast: false
